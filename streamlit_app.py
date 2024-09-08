@@ -60,12 +60,18 @@ def generate_image(topic: str):
 # image_empty = st.empty()
 
 # Streamlit UI components
-st.title('Escher Painting Generator')
-st.markdown("""M.C. Escher is known globally for his intricate and mathematically inspired artwork, Escher masterfully blended infinite loops, impossible scenarios, and visual puzzles that captivate and challenge the mind.
-Escher's work often depicted realistic scenes from Italy and the Netherlands, places he lived and traveled. Unfortunately, his explorations were confined to Europe, leaving many of the world's wonders unillustrated by his unique perspective.""")
-prompt = st.text_input('Enter a prompt for the image generator:')
+st.title('Escher-ifier')
+st.text('Escher Lithography Generator')
+st.markdown("""M.C. Escher is known globally for his mathematically inspired artwork, blended infinite loops, and visual puzzles.""")
+st.image("https://upload.wikimedia.org/wikipedia/en/a/a3/Escher%27s_Relativity.jpg", caption='Relativity by Escher (1953)')
+st.markdown("""Some of Escher's work also depicted realistic scenes, from Italy and the Netherlands. 
+Unfortunately, his explorations were confined to Europe, leaving many of the world's wonders unillustrated by his unique perspective.""")
 
-if st.button('Generate Image'):
+st.text("NB It is recommended to use architectural subjects.")
+
+prompt = st.text_input('Enter a prompt for the image generator:', placeholder="Colosseum in Rome")
+
+if st.button('Create lithography'):
     with st.spinner("Generating image"):
         url = generate_image(prompt)
         # print(url)
@@ -73,9 +79,10 @@ if st.button('Generate Image'):
         color_image = Image.open(BytesIO(response.content))    
         # Convert the image to black and white
         bw_image = color_image.convert('L')  # 'L' mode is for grayscale
-        
+    st.text("Generated drawing:")
     st.image(image=bw_image, caption="Generated Image", use_column_width=True)
 
 
-# st.text("Some examples:")
-# st.image()
+st.text("Some examples:")
+st.image("./images/xBmqSXI-g8fF8SycpWh6L_bc8cecea79e04447a1672dd5752cebc5.jpg", caption='prompt: "Golden Gate bridge in San Francisco"')
+st.image("./images/735617cebc82c72fa0b54b25129e2abaa2c48aad31df23ec850290c8.jpg", caption='prompt: "Colosseum in Rome"')

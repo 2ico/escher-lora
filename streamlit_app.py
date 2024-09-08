@@ -59,7 +59,9 @@ def generate_image(topic: str):
 # submit_button = st.button(label="Generate image", on_click=lambda: generate_image(topic, image_empty))
 # image_empty = st.empty()
 
-# Streamlit UI components
+st.set_page_config(
+        page_title="Escher-ifier",
+)
 st.title('Escher-ifier')
 st.text('Escher Lithography Generator')
 st.markdown("""M.C. Escher is known globally for his mathematically inspired artwork, blended infinite loops, and visual puzzles.""")
